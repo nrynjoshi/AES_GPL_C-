@@ -19,6 +19,18 @@ namespace GPLApplication
             {
                 throw new GPLException("Rectangle param error");
             }
+
+            Boolean isNumeric1 = int.TryParse(parameterList[0], out _);
+            if (!isNumeric1)
+            {
+                throw new GPLException("Rectangle param first value is not a number.");
+            }
+
+            Boolean isNumeric2 = int.TryParse(parameterList[1], out _);
+            if (!isNumeric2)
+            {
+                throw new GPLException("Rectangle param second value is not a number.");
+            }
         }
 
         public override void Draw()

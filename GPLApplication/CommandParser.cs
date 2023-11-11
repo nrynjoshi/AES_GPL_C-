@@ -103,6 +103,18 @@ namespace GPLApplication
                     throw new GPLException("Moveto param error");
                 }
 
+                Boolean isNumeric1 = int.TryParse(parameterList[0], out _);
+                if (!isNumeric1)
+                {
+                    throw new GPLException("MoveTo param first value is not a number.");
+                }
+
+                Boolean isNumeric2 = int.TryParse(parameterList[1], out _);
+                if (!isNumeric2)
+                {
+                    throw new GPLException("MoveTo param second value is not a number.");
+                }
+
                 this.xPos = int.Parse(parameterList[0]);
                 this.yPos = int.Parse(parameterList[1]);
             }
@@ -133,6 +145,15 @@ namespace GPLApplication
                 {
                     throw new GPLException("Pen param error");
                 }
+
+                Boolean isNumeric1 = int.TryParse(parameterList[0], out _);
+                if (isNumeric1)
+                {
+                    throw new GPLException("Pen param first value is not valid color name.");
+                }
+
+             
+
                 String colorName = (string)parameterList[0];
                 this.color = Color.FromName(colorName);
             }
@@ -143,14 +164,25 @@ namespace GPLApplication
                     throw new GPLException("Fill param error");
                 }
 
+                Boolean isNumeric1 = int.TryParse(parameterList[0], out _);
+                if (isNumeric1)
+                {
+                    throw new GPLException("Fill param first value is not a string.");
+                }
+
+
+
                 String fillOn = (string)parameterList[0];
                 if (fillOn.ToLower().Trim().Equals("on"))
                 {
                     this.isFillOn = true;
                 }
-                else
+                else if(fillOn.ToLower().Trim().Equals("off"))
                 {
                     this.isFillOn = false;
+                }else
+                {
+                    throw new GPLException("Fill param first value is not on/off.");
                 }
 
                

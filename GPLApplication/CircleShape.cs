@@ -19,6 +19,12 @@ namespace GPLApplication
             {
                 throw new GPLException("Circle param error");
             }
+
+            Boolean isNumeric = int.TryParse(parameterList[0], out _);
+            if (!isNumeric)
+            {
+                throw new GPLException("Circle param value is not a number.");
+            }
         }
 
         public override void Draw()
